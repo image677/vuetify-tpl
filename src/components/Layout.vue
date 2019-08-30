@@ -71,7 +71,7 @@
 
       <v-app-bar app>
         <div style="width: 100%">
-            Material Design
+            <h3 style="display: inline-block;color: #1976d2">Material Design</h3>
             <div class="float-right">
                 <v-avatar>
                   <img src="https://vuetifyjs.com/apple-touch-icon-180x180.png" alt="avatar">
@@ -107,7 +107,7 @@
 
                 <v-tooltip bottom>
                   <template v-slot:activator="{ on }">
-                    <v-btn text icon color="red" v-on="on">
+                    <v-btn text icon color="red" @click="logout" v-on="on">
                       <v-icon>power_settings_new</v-icon>
                     </v-btn>
                   </template>
@@ -172,6 +172,10 @@ export default {
     },
     darkTheme () {
       this.$vuetify.theme.isDark = true
+    },
+    logout () {
+      sessionStorage.removeItem('token')
+      this.$router.push('login')
     }
   }
 }

@@ -127,6 +127,7 @@ export default {
         }
       } else {
         // console.log('ok')
+        sessionStorage.setItem('token', '123456')
         this.$router.push('table')
       }
     }

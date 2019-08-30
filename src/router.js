@@ -5,7 +5,8 @@ import Layout from './components/Layout.vue'
 
 Vue.use(Router)
 
-export default new Router({
+// export default new Router({
+var userRouter = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -54,3 +55,5 @@ export default new Router({
     // },
   ]
 })
+
+export default userRouter
