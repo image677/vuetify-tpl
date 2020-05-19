@@ -1,6 +1,6 @@
 <template>
     <v-app>
-      <v-navigation-drawer app>
+      <v-navigation-drawer app v-model="drawer">
          <v-card
             class="mx-auto"
             width="300"
@@ -11,7 +11,7 @@
                   <v-icon>home</v-icon>
                 </v-list-item-icon>
 
-                <v-list-item-title>Home</v-list-item-title>
+                <v-list-item-title>控制台</v-list-item-title>
               </v-list-item>
 
               <v-list-group
@@ -66,12 +66,21 @@
                 </v-list-group>
               </v-list-group>
             </v-list>
+
+            <!-- <v-list-item link v-for:="item in loadMenu">
+              <v-list-item-icon>
+                <v-icon>home</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>{{item.path}}</v-list-item-title>
+            </v-list-item> -->
+
           </v-card>
       </v-navigation-drawer>
 
       <v-app-bar app>
         <div style="width: 100%">
-            <h3 style="display: inline-block;color: #1976d2">Material Design</h3>
+          <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+            <div class="d-none d-sm-inline-block title blue--text text--darken-2">Material Design</div>
             <div class="float-right">
                 <v-avatar>
                   <img src="https://vuetifyjs.com/apple-touch-icon-180x180.png" alt="avatar">
@@ -135,9 +144,12 @@
 </template>
 
 <script>
+import userRouter from '@/router'
 export default {
   name: 'Layout',
   data: () => ({
+    drawer: null,
+    menus: null,
     items: [
       {
         text: 'Dashboard',
@@ -166,8 +178,21 @@ export default {
       ['Delete', 'delete']
     ]
   }),
+  // computed: {
+  //   loadMenu () {
+  //     // console.log(Array.from(userRouter.options.routes))
+  //     // this.menus = userRouter.options.routes
+  //     return Array.from(userRouter.options.routes)
+  //   }
+  // },
+  // create () {
+  //   this.menus = userRouter.options.routes
+  //   console.log(this.menus)
+  //   console.log(11)
+  // },
   methods: {
     lightTheme () {
+      console.log(userRouter.options.routes)
       this.$vuetify.theme.isDark = false
     },
     darkTheme () {
